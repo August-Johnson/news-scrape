@@ -1,12 +1,45 @@
-h1 {
-    font-size: 120%;
-    color: #ffffff;
-}
-
-.navbar {
-    padding: 15px;
-}
-
 body {
-    background-color: black;
+    padding-top: 80px;
+}
+
+.navbar h1 {
+    color: #FFFFFF;
+    padding: 5px;
+    margin-left: 20px;
+}
+
+h2 {
+    color: #666666;
+    margin-top: 25px;
+}
+
+a.nav-link {
+    color: #FFFFFF;
+    font-size: 115%;
+    margin: 5px;
+}
+
+#home-page-background {
+    background-image: url("/assets/images/home-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 400px;
+    max-height: 500px;
+    text-align: center;
+    color: #666666;
+    font-size: 130%;
+    padding-top: 40px;
+}
+
+.btn {
+    margin-left: 10px;
+}
+
+h5 {
+    display: inline-block;
+}
+
+.card {
+    width: 100%;
 }
