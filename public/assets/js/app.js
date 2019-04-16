@@ -1,54 +1,53 @@
 $(function () {
-    $.get("/articles").then(function (articlesData) {
-        console.log(articlesData.length);
-        console.log(articlesData);
-
-        // create articles html elements
-        for (var i = 0; i < articlesData.length; i++) {
-            var article = articlesData[i];
-
-            var newArticle = $(
-                '<div class="card">'
-                + '<div class="card-header bg-primary text-white">'
-                + '<div class="row">'
-                + '<div class="col-9">'
-                + '<h5>' + article.title + '</h5>'
-                + '</div>'
-                + '<div class="col-3">'
-                + '<button class="btn btn-success">Save Article</button>'
-                + '<a href="' + article.link + '" <button class="btn btn-secondary">View Article</button></a>'
-                + '</div>'
-                + '</div>'
-                + '</div>'
-
-                + '<div class="row">'
-                + '<div class="col-12">'
-                + '<div class="card-body">'
-                + '<p class="card-text">' + article.summary + '</p>'
-                + '</div>'
-                + '</div>'
-                + '</div>'
-                + '</div>'
+    // Home page / unsaved articles
+    $.get("/").then(function (data) {
+        if (!data || data.length >= 0) {
+            $("#articles-container").html(
+                '<div class="jumbotron jumbotron-fluid text-center">'
+                + '<div class="container">'
+                + '<h1 class="display-4">NO ARTICLES</h1>'
+                + '<p class="lead">Looks like you don\'t have any new articles!</p>'
+                + '</div >'
+                + '</div >'
             );
-
-            $("#articles-container").append(newArticle);
         }
+        console.log("Articles");
+    });
+
+    // Loads the page with the user's saved articles
+    $("#saved-articles").on("click", function (event) {
+        event.preventDefault();
+
+        $.get("/saved").then(function (response) {
+            console.log(response);
+        });
 
     });
 
-
+    // When the user pressed the scrape articles button, make a request to /scrape
     $("#scrape-articles").on("click", function (event) {
         event.preventDefault();
         $("#articles-container").empty();
 
-        $.get("/scrape").then(function (scrapeData) {
-            console.log(scrapeData);
+        $.get("/scrape").then(function () {
             console.log("Scrape Completed");
             location.reload();
         });
     });
 
+    // Saving an article and using it's data-id for the put request
+    $(document).on("click", ".save-article", function (event) {
+        event.preventDefault();
+
+        var id = $(this).attr("data-article-id");
+        console.log(id);
+
+        $.ajax("/saveArticle/" + id, {
+            type: "PUT"
+        }).then(function (data) {
+            console.log(data);
+            location.reload();
+        });
+    });
 
 });
-
-

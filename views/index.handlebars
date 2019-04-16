@@ -4,16 +4,18 @@
 </div>
 
 <div class="container" id="articles-container">
+    {{#each article}}
+    {{#unless saved}}
 
     <div class="card">
         <div class="card-header bg-primary text-white">
             <div class="row">
                 <div class="col-9">
-                    <h5>Article Header</h5>
+                    <h5>{{title}}</h5>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-success">Save Article</button>
-                    <button class="btn btn-secondary">View Article</button>
+                    <button class="btn btn-success save-article" data-article-id="{{_id}}">Save Article</button>
+                    <a href="{{link}}" target="_blank"><button class="btn btn-secondary">View Article</button></button></a>
                 </div>
             </div>
         </div>
@@ -21,10 +23,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-body">
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text">{{summary}}</p>
                 </div>
             </div>
         </div>
     </div>
 
+    {{/unless}}
+    {{/each}}
 </div>
