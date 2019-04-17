@@ -1,7 +1,12 @@
-$(function () {
+$(document).ready(function () {
+
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus');
+    });
+
     // Home page / unsaved articles
     $.get("/").then(function (data) {
-        if (!data || data.length >= 0) {
+        if (!data || data.length <= 0) {
             $("#articles-container").html(
                 '<div class="jumbotron jumbotron-fluid text-center">'
                 + '<div class="container">'
@@ -15,13 +20,18 @@ $(function () {
     });
 
     // Loads the page with the user's saved articles
-    $("#saved-articles").on("click", function (event) {
-        event.preventDefault();
-
-        $.get("/saved").then(function (response) {
-            console.log(response);
-        });
-
+    $.get("/saved").then(function (data) {
+        if (!data || data.length <= 0) {
+            $("#articles-container").html(
+                '<div class="jumbotron jumbotron-fluid text-center">'
+                + '<div class="container">'
+                + '<h1 class="display-4">NO SAVED ARTICLES</h1>'
+                + '<p class="lead">Looks like you don\'t have any saved articles!</p>'
+                + '</div >'
+                + '</div >'
+            );
+        }
+        console.log("Saved Articles");
     });
 
     // When the user pressed the scrape articles button, make a request to /scrape
@@ -50,4 +60,50 @@ $(function () {
         });
     });
 
+
+    $(document).on("click", ".delete-article", function (event) {
+        event.preventDefault();
+
+        var id = $(this).arrt("data-article-id");
+        console.log(id);
+
+        $.ajax("/deleteArticle/" + id, {
+            type: "PUT"
+        }).then(function (data) {
+            console.log(data);
+            location.reload();
+        });
+    });
+
+
+    $(document).on("click", ".add-article-note", function (event) {
+        event.preventDefault();
+
+        var id = $(this).attr("data-article-id");
+        console.log(id);
+
+        $("myModalTitle").html("Notes For Article: " + id);
+
+        $.get("/notes/" + id).then(function (data) {
+            console.log(data);
+            if (!data || data.lenght <= 0) {
+                
+            }
+        });
+    });
+
+
+    // $(document).on("click", ".add-article-note", function (event) {
+    //     event.preventDefault();
+
+    //     var id = $(this).attr("data-article-id");
+    //     console.log(id);
+
+    //     $.ajax("/addNote/" + id, {
+    //         type: "POST",
+    //         data: note
+    //     }).then(function (data) {
+    //         console.log(data);
+    //     });
+    // })
 });

@@ -74,7 +74,16 @@ module.exports = function (app) {
 
     // Save an article
     app.put("/saveArticle/:id", function (req, res) {
-        db.Article.update({ _id: req.params.id }, { $set: { saved: true } }).then(function (data) {
+        db.Article.updateOne({ _id: req.params.id }, { $set: { saved: true } }).then(function (data) {
+            res.json(data);
+        }).catch(function (err) {
+            res.json(err);
+        });
+    });
+
+
+    app.put("/deletArticle/:id", function (req, res) {
+        db.Article.updateOne({ _id: req.params.id }, { $set: { saved: false } }).then(function (data) {
             res.json(data);
         }).catch(function (err) {
             res.json(err);
