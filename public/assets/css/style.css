@@ -13,9 +13,13 @@ h2 {
     margin-top: 25px;
 }
 
+h5 {
+    font-size: 140%;
+}
+
 a.nav-link {
     color: #FFFFFF;
-    font-size: 115%;
+    font-size: 120%;
     margin: 5px;
 }
 
@@ -32,15 +36,28 @@ a.nav-link {
     padding-top: 40px;
 }
 
-.btn {
-    margin-left: 10px;
+#saved-articles-background {
+    background-image: url("/assets/images/saved-background.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 400px;
+    max-height: 500px;
+    text-align: center;
+    color: #666666;
+    font-size: 130%;
+    padding-top: 40px;
 }
 
-h5 {
-    display: inline-block;
+button#scrape-articles {
+    padding: 20px;
 }
 
 .card {
     width: 100%;
     margin: 20px auto;
+}
+
+.card p {
+    font-size: 110%;
 }

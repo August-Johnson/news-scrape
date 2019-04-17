@@ -4,8 +4,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle"
-    aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -31,12 +30,15 @@
     <div class="card">
         <div class="card-header bg-primary text-white">
             <div class="row">
-                <div class="col-8">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
                     <h5>{{title}}</h5>
                 </div>
-                <div class="col-4">
-                    <button class="btn btn-success add-article-note" data-toggle="modal" data-target="#myModal" data-article-id="{{_id}}">ARTICLE NOTES</button>
-                    <button class="btn btn-secondary delete-article" data-article-id="{{_id}}">DELETE FROM
+                <div class="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2">
+                    <button class="btn btn-success add-article-note" data-toggle="modal" data-target="#myModal"
+                        data-article-id="{{_id}}">ARTICLE NOTES</button>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                    <button class="btn btn-danger delete-article" data-article-id="{{_id}}">DELETE FROM
                         SAVED</button>
                 </div>
             </div>
