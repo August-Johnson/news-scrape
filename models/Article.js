@@ -20,7 +20,7 @@ var ArticleSchema = new Schema({
         default: false
     },
     note: {
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.Mixed,
         ref: "Note"
     }
 });

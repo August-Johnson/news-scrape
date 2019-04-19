@@ -1,20 +1,20 @@
+/* Global elements styling */
 body {
     padding-top: 80px;
 }
 
-.navbar h1 {
-    color: #FFFFFF;
-    padding: 5px;
-    margin-left: 20px;
-}
-
 h2 {
-    color: #666666;
     margin-top: 25px;
 }
 
 h5 {
     font-size: 140%;
+}
+ /* Navbar elements styling */
+.navbar h1 {
+    color: #FFFFFF;
+    padding: 5px;
+    margin-left: 20px;
 }
 
 a.nav-link {
@@ -23,6 +23,17 @@ a.nav-link {
     margin: 5px;
 }
 
+a.active {
+    font-weight: 650;
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+button#scrape-articles {
+    padding: 20px;
+}
+
+/* Styling for the main headers for index and saved-articles pages */
 #home-page-background {
     background-image: url("/assets/images/home-background.jpg");
     background-repeat: no-repeat;
@@ -31,7 +42,7 @@ a.nav-link {
     min-height: 400px;
     max-height: 500px;
     text-align: center;
-    color: #666666;
+    color: #000000;
     font-size: 130%;
     padding-top: 40px;
 }
@@ -49,10 +60,7 @@ a.nav-link {
     padding-top: 40px;
 }
 
-button#scrape-articles {
-    padding: 20px;
-}
-
+/* Bootstrap card styling */
 .card {
     width: 100%;
     margin: 20px auto;

@@ -1,43 +1,70 @@
+{{!-- Navbar --}}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+
+    <h1>Mongo Scraper</h1>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <a class="nav-link" href="/" id="home-articles">Home</a>
+        <a class="nav-link active" href="/saved" id="saved-articles">Saved Articles <span
+                class="sr-only">(current)</span></a>
+    </div>
+</nav>
+
 <div id="saved-articles-background">
     <h1>Saved Articles</h1>
     <h2>Your Saved Articles</h2>
 </div>
 
-<!-- Modal -->
+{{!-- Modal --}}
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalTitle"></h5>
+                <h5 class="modal-title" id="myModalTitle">Notes for Article: <span class="note-article-id"></span></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+
+                {{!-- Notes printed here --}}
                 <div class="article-notes"></div>
+
+                {{!-- Note input field --}}
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="note-input-text" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" placeholder="New Note">
+                    <button type="submit" class="btn btn-success" id="save-new-note">Save Note</button>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
 
+{{!-- Div for all saved articles --}}
 <div class="container" id="saved-articles-container">
+    {{!-- Looping through each saved article and creating a Bootstrap card for each --}}
     {{#each savedArticle}}
 
     <div class="card">
         <div class="card-header bg-primary text-white">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-7">
                     <h5>{{title}}</h5>
                 </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2">
+                <div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-2">
                     <button class="btn btn-success add-article-note" data-toggle="modal" data-target="#myModal"
                         data-article-id="{{_id}}">ARTICLE NOTES</button>
                 </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                <div class="col-6 col-sm-5 col-md-4 col-lg-2 col-xl-3">
                     <button class="btn btn-danger delete-article" data-article-id="{{_id}}">DELETE FROM
                         SAVED</button>
                 </div>
