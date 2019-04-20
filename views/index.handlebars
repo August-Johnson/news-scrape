@@ -23,6 +23,18 @@
 
 {{!-- Div for all scraped articles --}}
 <div class="container" id="articles-container">
+
+{{!-- If the request returns no articles, display generic message --}}
+    {{#each noArticles}}
+
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-4">Looks like you don't have any new articles!</h1>
+        </div>
+    </div>
+
+    {{/each}}
+
     {{!-- Looping through each article that has not been saved by the user, and creating a Bootstrap card for each one --}}
     {{#each article}}
     {{#unless saved}}

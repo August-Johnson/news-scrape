@@ -51,6 +51,18 @@
 
 {{!-- Div for all saved articles --}}
 <div class="container" id="saved-articles-container">
+
+{{!-- If the request returns no saved articles, display generic message --}}
+    {{#each noSavedArticles}}
+
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-4">Looks like you don't have any new articles!</h1>
+        </div>
+    </div>
+
+    {{/each}}
+
     {{!-- Looping through each saved article and creating a Bootstrap card for each --}}
     {{#each savedArticle}}
 

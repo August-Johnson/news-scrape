@@ -51,32 +51,12 @@ $(document).ready(function () {
 
     // Home page / unsaved articles
     $.get("/").then(function (data) {
-        // If you did not scrape any articles, display generic message
-        if (!data || data.length <= 0) {
-            $("#articles-container").html(
-                '<div class="jumbotron jumbotron-fluid text-center">'
-                + '<div class="container">'
-                + '<h1 class="display-4">NO ARTICLES</h1>'
-                + '<p class="lead">Looks like you don\'t have any new articles!</p>'
-                + '</div >'
-                + '</div >'
-            );
-        }
+        // console.log(data);
     });
 
     // Loads the page with the user's saved articles
     $.get("/saved").then(function (data) {
-        // If there are no saved articles, display generic message
-        if (!data || data.length <= 0) {
-            $("#saved-articles-container").html(
-                '<div class="jumbotron jumbotron-fluid text-center">'
-                + '<div class="container">'
-                + '<h1 class="display-4">UH OH!</h1>'
-                + '<p class="lead">Looks like you don\'t have any saved articles!</p>'
-                + '</div >'
-                + '</div >'
-            );
-        }
+        // console.log(data);
     });
 
     // STANDARD ELEMENT CLICK EVENTS

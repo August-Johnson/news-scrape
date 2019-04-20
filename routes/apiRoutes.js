@@ -9,6 +9,12 @@ module.exports = function (app) {
     app.get("/", function (req, res) {
         // Finding all articles in the database that aren't previously saved by the user
         db.Article.find({ saved: false }).then(function (articlesData) {
+
+            // If there are no articles or none that aren't saved, 
+            // render the index page and pass an array with a length of 1 (the actual content doesn't matter)
+            if (!articlesData || articlesData.length <= 0) {
+                return res.render("index", { noArticles: [1] });
+            }
             // Render the index.handlebars to the html with the returning data
             res.render("index", { article: articlesData });
         }).catch(function (err) {
@@ -20,6 +26,12 @@ module.exports = function (app) {
     app.get("/saved", function (req, res) {
         // Finding all articles in the database that have been saved by the user
         db.Article.find({ saved: true }).then(function (savedArticlesData) {
+
+            // If there are no saved articles, 
+            // render the saved-articles page and pass an array with a length of 1 (the actual content doesn't matter)
+            if (!savedArticlesData || savedArticlesData.length <= 0) {
+                return res.render("saved-articles", { noSavedArticles: [1] });
+            }
             // Render the saved-articles.handlebars to the html with the returning data
             res.render("saved-articles", { savedArticle: savedArticlesData });
         }).catch(function (err) {
